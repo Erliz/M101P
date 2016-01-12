@@ -1,0 +1,19 @@
+mongo:
+  container_name: m101-mongo
+  image: mongo
+  volumes:
+    - ./db:/data/db
+  ports:
+    - "27018:27017"
+
+python:
+  container_name: m101-python
+  image: python:2
+  volumes:
+    - ./:/app
+  links:
+    - mongo
+  working_dir: /app
+  tty: true
+  command: bash
+
