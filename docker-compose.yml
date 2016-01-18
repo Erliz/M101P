@@ -6,6 +6,17 @@ mongo:
   ports:
     - "27018:27017"
 
+mongo-bash:
+  container_name: m101-mongo-bash
+  image: mongo
+  volumes:
+    - ./:/app
+  links:
+    - mongo
+  working_dir: /app
+  tty: true
+  command: bash
+
 python:
   container_name: m101-python
   image: python:2
@@ -16,4 +27,5 @@ python:
   working_dir: /app
   tty: true
   command: bash
-
+  ports:
+    - "8001:8082"
